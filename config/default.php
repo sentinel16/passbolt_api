@@ -117,8 +117,8 @@ return [
             'serverKey' => [
                 // Server public / private key location and fingerprint.
                 'fingerprint' => env('PASSBOLT_GPG_SERVER_KEY_FINGERPRINT', null),
-                'public' => env('PASSBOLT_GPG_SERVER_KEY_PUBLIC', null),
-                'private' => env('PASSBOLT_GPG_SERVER_KEY_PRIVATE', null),
+                'public' => env('PASSBOLT_GPG_SERVER_KEY_PUBLIC', ROOT . DS . 'config' . DS . 'gpg' . DS . 'serverkey.asc'),
+                'private' => env('PASSBOLT_GPG_SERVER_KEY_PRIVATE', ROOT . DS . 'config' . DS . 'gpg' . DS . 'serverkey_private.asc'),
 
                 // PHP Gnupg module currently does not support passphrase, please leave blank.
                 'passphrase' => ''

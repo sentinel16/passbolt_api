@@ -92,20 +92,6 @@ return [
                 'public' => '',
                 'private' => '',
             ],
-
-            // By default passbolt ignore the environment variable $GNUPGHOME even if it is set.
-            // You can change that behavior by setting the variable bellow to false
-            // 'putenv' => false,
-
-            // The keyring variable tells passbolt where to find the GnuPG keyring
-            // when passbolt.gpg.putenv is set to true.
-            //
-            // The default location of the keyring can vary depending on your system:
-            // Apache on Centos: '/usr/share/httpd/.gnupg'
-            // Apache on Debian: '/var/www/.gnupg'
-            // Nginx on Centos: '/var/lib/nginx/.gnupg'
-            //
-            // 'keyring' => '/home/www-data/.gnupg',
         ],
     ],
 
@@ -130,8 +116,6 @@ return [
 //                'public' => ROOT . DS . 'config' . DS . 'gpg' . DS . 'unsecure.key',
 //                'private' => ROOT . DS . 'config' . DS . 'gpg' . DS . 'unsecure_private.key',
 //            ],
-//            'putenv' => true,
-//            'keyring' => '/var/lib/nginx/.gnupg',
 //        ],
 //    ]
 

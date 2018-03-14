@@ -31,91 +31,91 @@ matrix:
   fast_finish: true
 
   include:
-    # PHP 7.0 - MYSQL 5.6 + COVERAGE
-    - php: 7.0
-      env: PHPUNIT=1 COVERAGE=1 DB=mysql DB_VERSION=5.6
-      addons: &php7_addon
-        apt:
-          packages:
-            - *common_pkg
-
-    # PHP 7.0 - MYSQL 5.7
-    - php: 7.0
-      env: PHPUNIT=1 DB=mysql DB_VERSION=5.7
-      addons: *php7_addon
-      before_install: &before_install_mysql57
-        - echo mysql-apt-config mysql-apt-config/select-server select mysql-5.7 | sudo debconf-set-selections
-        - wget http://dev.mysql.com/get/mysql-apt-config_0.7.3-1_all.deb
-        - sudo dpkg --install mysql-apt-config_0.7.3-1_all.deb
-        - sudo apt-get update -q
-        - sudo apt-get install -q -y --force-yes -o Dpkg::Options::=--force-confnew mysql-server
-        - sudo mysql_upgrade
-        - sudo service mysql restart
-
-    # PHP 7.0 - MARIADB 10.1
-    - php: 7.0
-      env: PHPUNIT=1 DB=mariadb DB_VERSION=10.1
-      addons: &php7_addon
-        mariadb: '10.1'
-        apt:
-          packages:
-            - *common_pkg
-
-    # PHP 7.0 - MARIADB 10.2
-    - php: 7.0
-      env: PHPUNIT=1 DB=mariadb DB_VERSION=10.2
-      addons: &php7_addon
-        mariadb: '10.2'
-        apt:
-          packages:
-            - *common_pkg
-
-    # PHP 7.0 - MARIADB 10.3
-    - php: 7.0
-      env: PHPUNIT=1 DB=mariadb DB_VERSION=10.3
-      addons: &php7_addon
-        mariadb: '10.3'
-        apt:
-          packages:
-            - *common_pkg
-
-    # PHP 7.0 - POSTGRESQL 9.2
-    - php: 7.0
-      env: PHPUNIT=1 DB=postgresql DB_VERSION=9.2 DATASOURCES_TEST_DRIVER=Postgres DATASOURCES_TEST_USERNAME=postgres DATASOURCES_TEST_PORT=5432
-      addons: *php7_addon
-
-    # PHP 7.0 - POSTGRESQL 9.4
-    - php: 7.0
-      env: PHPUNIT=1 DB=postgresql DB_VERSION=9.4 DATASOURCES_TEST_DRIVER=Postgres DATASOURCES_TEST_USERNAME=postgres DATASOURCES_TEST_PORT=5432
-      addons:
-        postgresql: "9.4"
-        apt:
-          packages:
-            - *common_pkg
+#    # PHP 7.0 - MYSQL 5.6 + COVERAGE
+#    - php: 7.0
+#      env: PHPUNIT=1 COVERAGE=1 DB=mysql DB_VERSION=5.6
+#      addons: &php7_addon
+#        apt:
+#          packages:
+#            - *common_pkg
+#
+#    # PHP 7.0 - MYSQL 5.7
+#    - php: 7.0
+#      env: PHPUNIT=1 DB=mysql DB_VERSION=5.7
+#      addons: *php7_addon
+#      before_install: &before_install_mysql57
+#        - echo mysql-apt-config mysql-apt-config/select-server select mysql-5.7 | sudo debconf-set-selections
+#        - wget http://dev.mysql.com/get/mysql-apt-config_0.7.3-1_all.deb
+#        - sudo dpkg --install mysql-apt-config_0.7.3-1_all.deb
+#        - sudo apt-get update -q
+#        - sudo apt-get install -q -y --force-yes -o Dpkg::Options::=--force-confnew mysql-server
+#        - sudo mysql_upgrade
+#        - sudo service mysql restart
+#
+#    # PHP 7.0 - MARIADB 10.1
+#    - php: 7.0
+#      env: PHPUNIT=1 DB=mariadb DB_VERSION=10.1
+#      addons: &php7_addon
+#        mariadb: '10.1'
+#        apt:
+#          packages:
+#            - *common_pkg
+#
+#    # PHP 7.0 - MARIADB 10.2
+#    - php: 7.0
+#      env: PHPUNIT=1 DB=mariadb DB_VERSION=10.2
+#      addons: &php7_addon
+#        mariadb: '10.2'
+#        apt:
+#          packages:
+#            - *common_pkg
+#
+#    # PHP 7.0 - MARIADB 10.3
+#    - php: 7.0
+#      env: PHPUNIT=1 DB=mariadb DB_VERSION=10.3
+#      addons: &php7_addon
+#        mariadb: '10.3'
+#        apt:
+#          packages:
+#            - *common_pkg
+#
+#    # PHP 7.0 - POSTGRESQL 9.2
+#    - php: 7.0
+#      env: PHPUNIT=1 DB=postgresql DB_VERSION=9.2 DATASOURCES_TEST_DRIVER=Postgres DATASOURCES_TEST_USERNAME=postgres DATASOURCES_TEST_PORT=5432
+#      addons: *php7_addon
+#
+#    # PHP 7.0 - POSTGRESQL 9.4
+#    - php: 7.0
+#      env: PHPUNIT=1 DB=postgresql DB_VERSION=9.4 DATASOURCES_TEST_DRIVER=Postgres DATASOURCES_TEST_USERNAME=postgres DATASOURCES_TEST_PORT=5432
+#      addons:
+#        postgresql: "9.4"
+#        apt:
+#          packages:
+#            - *common_pkg
 
     # PHP 7.1 - MYSQL 5.6
     - php: 7.1
       env: PHPUNIT=1 DB=mysql DB_VERSION=5.6
       addons: *php7_addon
 
-    # PHP 7.2 - MYSQL 5.6
-    - php: 7.2
-      env: PHPUNIT=1 DB=mysql DB_VERSION=5.6
-      addons: *php7_addon
-
-    # PHPCS
-    - php: 7.0
-      env: PHPCS=1 DB=mysql DB_VERSION=5.6
-      addons: *php7_addon
-
-  allow_failures:
-    # PHP 7.0 - POSTGRESQL 9.2
-    - php: 7.0
-      env: PHPUNIT=1 DB=postgresql DB_VERSION=9.2 DATASOURCES_TEST_DRIVER=Postgres DATASOURCES_TEST_USERNAME=postgres DATASOURCES_TEST_PORT=5432
-
-    # PHP 7.0 - POSTGRESQL 9.4
-    - php: 7.0
-      env: PHPUNIT=1 DB=postgresql DB_VERSION=9.4 DATASOURCES_TEST_DRIVER=Postgres DATASOURCES_TEST_USERNAME=postgres DATASOURCES_TEST_PORT=5432
+#    # PHP 7.2 - MYSQL 5.6
+#    - php: 7.2
+#      env: PHPUNIT=1 DB=mysql DB_VERSION=5.6
+#      addons: *php7_addon
+#
+#    # PHPCS
+#    - php: 7.0
+#      env: PHPCS=1 DB=mysql DB_VERSION=5.6
+#      addons: *php7_addon
+#
+#  allow_failures:
+#    # PHP 7.0 - POSTGRESQL 9.2
+#    - php: 7.0
+#      env: PHPUNIT=1 DB=postgresql DB_VERSION=9.2 DATASOURCES_TEST_DRIVER=Postgres DATASOURCES_TEST_USERNAME=postgres DATASOURCES_TEST_PORT=5432
+#
+#    # PHP 7.0 - POSTGRESQL 9.4
+#    - php: 7.0
+#      env: PHPUNIT=1 DB=postgresql DB_VERSION=9.4 DATASOURCES_TEST_DRIVER=Postgres DATASOURCES_TEST_USERNAME=postgres DATASOURCES_TEST_PORT=5432
 
 before_script:
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE IF NOT EXISTS passbolt_test;'; fi"
@@ -126,6 +126,7 @@ before_script:
   - composer install --no-interaction
   - echo yes | pecl install gnupg
   - gpg --import config/gpg/unsecure_private.key
+  - ./bin/cake passbolt healthcheck
 
 script:
   - if [[ $PHPCS = 1 ]]; then composer cs-check; fi

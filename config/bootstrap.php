@@ -30,10 +30,6 @@ if (!extension_loaded('mbstring')) {
     trigger_error('You must enable the mbstring extension to use Passbolt.', E_USER_ERROR);
 }
 
-if (!extension_loaded('gnupg')) {
-    trigger_error('You must enable the gnupg extension to use Passbolt.', E_USER_ERROR);
-}
-
 if (!(extension_loaded('gd') || extension_loaded('imagick'))) {
     trigger_error('You must enable the gd or imagick extensions to use Passbolt.', E_USER_ERROR);
 }
